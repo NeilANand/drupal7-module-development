@@ -33,7 +33,7 @@ class FirstTestCase extends DrupalWebTestCase {
     $this->assertTrue(is_array($data),
       t("Block returns renderable array."));
 
-    $this->assertEqual(t("Enabled modules."), $data["subject"],
+    $this->assertEqual(t("Enabled modules"), $data["subject"],
       t("Subject is set."));
   }
 }
