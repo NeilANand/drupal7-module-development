@@ -11,7 +11,7 @@
 /**
  * Implements hook_help()
  */
-function first_help($path, $arg){
+function first_help($path, $arg) {
   if ($path == "admin/help#first") {
     return t("A demonstration module.");
   }
@@ -20,7 +20,7 @@ function first_help($path, $arg){
 /**
  * Implements hook_block_info()
  */
-function first_block_info(){
+function first_block_info() {
   $blocks = array();
 
   $blocks["list_modules"] = array(
