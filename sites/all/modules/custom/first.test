@@ -5,6 +5,10 @@
  */
 
 class FirstTestCase extends DrupalWebTestCase {
+  public function setUp() {
+    parent::setUp();
+  }
+
   public function getInfo() {
     return array(
       "name" => "First module block functionality",
