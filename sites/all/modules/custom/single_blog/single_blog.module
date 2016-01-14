@@ -84,7 +84,10 @@ function single_blog_block_view($delta = "") {
 
     if (!empty($items)) {
       //Theme the list of blog entries.
-      $block["content"] = theme("item_list", array("items" => $items));
+      $block["content"] = array(
+        "#theme" => "item_list__single_blog",
+        "#items" => $items,
+      );
     }
   }
 
