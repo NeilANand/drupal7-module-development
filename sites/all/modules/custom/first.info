@@ -3,6 +3,7 @@ description = A first module
 package = Drupal 7 Module Development
 core = 7.x
 files[] = first.module
+files[] = first.test
 
 ;dependencies[] = autoload
 ;php = 5.2
