@@ -1,0 +1,32 @@
+<?php
+/**
+ * @file
+ * Enables a single user blog
+ */
+
+//After you learn From API in Chapter 5, you'll be able to make these settings configurable
+define("SINGLE_BLOG_NODE_TYPE", "article");
+define("SINGLE_BLOG_LIST_COUNT", 3);
+
+/**
+ * Returns a list of blog entries
+ *
+ * @param $number int
+ *  The number of blog entries to return.
+ *
+ * @return object
+ *  A result set object containing the list of blog entries
+ */
+function single_blog_list($number) {
+  //Use the Database API to retrieve our data.
+  //@see http://drupal.org/node/310069
+  $query = db_select("node", "n")
+    ->fields("n", array("nid", "title", "created", "uid"))
+    ->condition("type", SINGLE_BLOG_NODE_TYPE)
+    ->orderBy("created", "DESC")
+    ->range(0, $number)
+    ->addTag("node_access")
+    ->execute();
+
+  return $query;
+}
