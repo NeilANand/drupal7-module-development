@@ -55,3 +55,7 @@ crashlytics.properties
 crashlytics-build.properties
 
 
+### Vagrant
+.vagrant
+puphpet/files/dot/ssh
+!puphpet/files/dot/ssh/insecure_private_key
