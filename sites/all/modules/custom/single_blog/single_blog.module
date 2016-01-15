@@ -137,7 +137,7 @@ function single_blog_theme($existing, $type, $theme, $path) {
 /**
  * Preprocesses single blog block item variables.
  */
-function template_preprocess_single_block_block_item(&$variables) {
+function template_preprocess_single_blog_block_item(&$variables) {
   $node = $variables["node"];
 
   //Create a renderable array for the title.
