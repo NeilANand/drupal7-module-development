@@ -77,9 +77,8 @@ function single_blog_block_view($delta = "") {
       foreach($result as $node) {
         $items[] = array(
           "data" => array(
-            "#type" => "link",
-            "#title" => $node->title,
-            "#href" => "node/" . $node->nid,
+            "#theme" => "single_blog_block_item",
+            "#node" => $node,
           ),
           "class" => array("node-" . $node->nid),
         );
