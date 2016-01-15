@@ -133,3 +133,27 @@ function single_blog_theme($existing, $type, $theme, $path) {
     ),
   );
 }
+
+/**
+ * Preprocesses single blog block item variables.
+ */
+function template_preprocess_single_block_block_item(&$variables) {
+  $node = $variables["node"];
+
+  //Create a renderable array for the title.
+  $variables["title"] = array(
+    "#type" => "link",
+    "#title" => $node->title,
+    "#href" => "node/" . $node->nid,
+  );
+
+  //Format the creation date of the node.
+  $variables["created"] = $node->created;
+  $variables["date"] = format_date($node->created, "custom", "F d, Y");
+
+  //Load the account object with the node's creator and store in a variable for themer convenience.
+  $variables["user"] = user_load($node->nid);
+
+  //Theme the username.
+  $variables["name"] = theme("username", array("account" => $variables["user"],));
+}
