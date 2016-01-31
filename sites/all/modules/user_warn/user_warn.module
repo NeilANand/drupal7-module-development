@@ -57,7 +57,7 @@ function user_warn_form($form, &$form_state) {
   // Text field for the e-mail subject.
   $form["user_warn_e-mail_subject"] = array (
     "#type" => "textfield",
-    "#default_value" => variable_get("user_warn_e-mail_subject", "Administrative Warning"),
+    "#default_value" => "Administrative Warning",
     "#title" => t("Warning e-mail subject"),
     "#description" => t("The subject of the e-mail which will be sent to users."),
     "#size" => 40,
@@ -70,7 +70,7 @@ function user_warn_form($form, &$form_state) {
     "#type" => "textarea",
     "#rows" => 10,
     "#columns" => 40,
-    "#defualt_value" => variable_get("user_warn_e-mail_text", USER_WARN_MAIL_TEXT),
+    "#defualt_value" => USER_WARN_MAIL_TEXT,
     "#title" => t("Warning e-mail text"),
     "#required" => TRUE,
     "#description" => t("The text of the e-mail which will be sent to users."),
@@ -79,27 +79,10 @@ function user_warn_form($form, &$form_state) {
   // Checkbox to indicate if admin should be sent a Bcc on e-mails.
   $form["user_arn_bcc"] = array(
     "#type" => "checkbox",
-    "#default_value" => variable_get("user_warn_bcc", FALSE),
+    "#default_value" => FALSE,
     "#title" => t("BCC admin on all e-mails"),
     "#description" => t("Indicates whether the admin user (as set in site configuration) should be sent on all warning emails."),
   );
 
-  // Submit button
-  $form["submit"] = array(
-    "#type" => "submit",
-    "#value" => t("Save settings"),
-  );
-
-    return $form;
-}
-
-/**
- * Save configuration settings for User Warn module.
- */
-function user_warn_form_submit($form, &$form_state) {
-    variable_set("user_warn_e-mail_subject", $form_state["value"]["user_warn_e-mail_subject"]);
-    variable_set("user_warn_e-mail_text", $form_state["value"]["user_warn_e-mail_text"]);
-    variable_set("user_warn_bcc", $form_state["value"]["user_warn_bcc"]);
-
-    drupal_set_message(t("The settings have been saved"));
+  return system_settings_form($form);
 }
