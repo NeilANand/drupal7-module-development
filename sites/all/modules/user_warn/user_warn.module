@@ -92,3 +92,14 @@ function user_warn_form($form, &$form_state) {
 
     return $form;
 }
+
+/**
+ * Save configuration settings for User Warn module.
+ */
+function user_warn_form_submit($form, &$form_state) {
+    variable_set("user_warn_e-mail_subject", $form_state["value"]["user_warn_e-mail_subject"]);
+    variable_set("user_warn_e-mail_text", $form_state["value"]["user_warn_e-mail_text"]);
+    variable_set("user_warn_bcc", $form_state["value"]["user_warn_bcc"]);
+
+    drupal_set_message(t("The settings have been saved"));
+}
