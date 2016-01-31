@@ -7,12 +7,12 @@
  * e-mail including token replacement.
  */
 
-define("USER_WARN_MAIL_TEXT", "Hello,
+define("USER_WARN_MAIL_TEXT", "Hello [user:name],
 
-We have been notified that you have posted comments on our site that are in violation of our terms of service. If this behavior continues your account with be suspended.
+We have been notified that you have posted comments on [site:name] that are in violation of our terms of service. If this behavior continues your account with be suspended.
 
 Sincerely,
-The administrative staff");
+[site:name]");
 
 /**
  * Implement hook_help()
@@ -132,7 +132,7 @@ function user_warn_mail($key, &$message, $params) {
       $account = $params["account"];
       $subject = variable_get("user_warn_e-mail_subject", "Administrative Warning");
 
-      $body = variable_get("user_warn_e-mail_text", "You've been warned!");
+      $body = variable_get("user_warn_e-mail_text", USER_WARN_MAIL_TEXT);
 
       if (variable_get("user_warn_bcc", FALSE)) {
           $admin_mail = variable_get("site_mail", NULL);
@@ -141,7 +141,7 @@ function user_warn_mail($key, &$message, $params) {
 
       $message["to"] = $account->mail;
       $message["subject"] = $subject;
-      $message["body"][] = $body;
+      $message["body"][] = token_replace($body, array("user" => $account));
 
       break;
   }
