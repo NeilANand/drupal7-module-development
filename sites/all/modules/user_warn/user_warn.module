@@ -7,6 +7,13 @@
  * e-mail including token replacement.
  */
 
+define("USER_WARN_MAIL_TEXT", "Hello,
+
+We have been notified that you have posted comments on our site that are in violation of our terms of service. If this behavior continues your account with be suspended.
+
+Sincerely,
+The administrative staff");
+
 /**
  * Implement hook_help()
  */
@@ -50,6 +57,7 @@ function user_warn_form($form, &$form_state) {
   // Text field for the e-mail subject.
   $form["user_warn_e-mail_subject"] = array (
     "#type" => "textfield",
+    "#default_value" => variable_get("user_warn_e-mail_subject", "Administrative Warning"),
     "#title" => t("Warning e-mail subject"),
     "#description" => t("The subject of the e-mail which will be sent to users."),
     "#size" => 40,
@@ -62,6 +70,7 @@ function user_warn_form($form, &$form_state) {
     "#type" => "textarea",
     "#rows" => 10,
     "#columns" => 40,
+    "#defualt_value" => variable_get("user_warn_e-mail_text", USER_WARN_MAIL_TEXT),
     "#title" => t("Warning e-mail text"),
     "#required" => TRUE,
     "#description" => t("The text of the e-mail which will be sent to users."),
@@ -70,6 +79,7 @@ function user_warn_form($form, &$form_state) {
   // Checkbox to indicate if admin should be sent a Bcc on e-mails.
   $form["user_arn_bcc"] = array(
     "#type" => "checkbox",
+    "#default_value" => variable_get("user_warn_bcc", FALSE),
     "#title" => t("BCC admin on all e-mails"),
     "#description" => t("Indicates whether the admin user (as set in site configuration) should be sent on all warning emails."),
   );
