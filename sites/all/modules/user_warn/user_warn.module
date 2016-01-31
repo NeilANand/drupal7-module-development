@@ -42,3 +42,43 @@ function user_warn_menu() {
 
     return $items;
 }
+
+/**
+ * Form builder; Create and display the User Warn configuration settings form.
+ */
+function user_warn_form($form, &$form_state) {
+  // Text field for the e-mail subject.
+  $form["user_warn_e-mail_subject"] = array (
+    "#type" => "textfield",
+    "#title" => t("Warning e-mail subject"),
+    "#description" => t("The subject of the e-mail which will be sent to users."),
+    "#size" => 40,
+    "#maxlength" => 120,
+    "#required" => TRUE,
+  );
+
+  // Textarea for the body of the e-mail.
+  $form["user_war_e-mail_text"] = array(
+    "#type" => "textarea",
+    "#rows" => 10,
+    "#columns" => 40,
+    "#title" => t("Warning e-mail text"),
+    "#required" => TRUE,
+    "#description" => t("The text of the e-mail which will be sent to users."),
+  );
+
+  // Checkbox to indicate if admin should be sent a Bcc on e-mails.
+  $form["user_arn_bcc"] = array(
+    "#type" => "checkbox",
+    "#title" => t("BCC admin on all e-mails"),
+    "#description" => t("Indicates whether the admin user (as set in site configuration) should be sent on all warning emails."),
+  );
+
+  // Submit button
+  $form["submit"] = array(
+    "#type" => "submit",
+    "#value" => t("Save settings"),
+  );
+
+    return $form;
+}
